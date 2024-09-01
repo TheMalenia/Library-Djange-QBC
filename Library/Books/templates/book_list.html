@@ -1,0 +1,47 @@
+<html>
+<head>
+    <a href="{% url 'book_list' %}">Home</a>
+    <title>Book List</title>
+</head>
+<body>
+
+
+    <h3>Search Books</h3>
+    <form method="get" action="{% url 'search_book' %}">
+        <input type="text" name="q" placeholder="Search by title or author">
+        <button type="submit">Search</button>
+    </form>
+
+
+    <h2>Book List</h2>
+    <ul>
+        {% for book in books %}
+        <li>
+            <strong> {{ book.title }}</strong> by {{ book.author }} - ${{ book.price }} - {{ book.publish_date }} <br> {{ book.description }}
+            <br>
+            <a href="{% url 'edit_book' book.pk %}">Edit</a> | 
+            <a href="{% url 'delete_book' book.pk %}">Delete</a>
+        </li>
+        {% empty %}
+        <li>There is no books</li>
+        {% endfor %}
+    </ul>
+    <! mishe jay ol, ul gozasht -->
+
+    <br>
+    <a href="{% url 'add_book' %}">Add a New Book</a>
+
+
+    
+
+    <h3>Filter Books</h3>
+    <form method="get" action="{% url 'filter_book' %}">
+        <input type="number" step="0.01" name="min_price" placeholder="Min Price">
+        <input type="number" step="0.01" name="max_price" placeholder="Max Price">
+        <input type="date" name="start_date" placeholder="Start Date">
+        <input type="date" name="end_date" placeholder="End Date">
+        <button type="submit">Filter</button>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,16 @@
+<html>
+<head>
+    <title>Add Book</title>
+</head>
+<body>
+    <h2>Add a New Book</h2>
+    <form method="post">
+        <! –– why csrf in here?? -->
+        <! -- https://docs.djangoproject.com/en/5.1/ref/forms/api/#render -->
+        {% csrf_token %} 
+        {{ form.as_p }} 
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'book_list' %}">Back to Book List</a>
+</body>
+</html>
